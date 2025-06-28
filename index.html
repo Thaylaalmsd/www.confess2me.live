@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confess to Me</title>
+    <style>
+        /* Define um tamanho de fonte base para o elemento HTML, permitindo que as unidades 'rem' escalem */
+        html {
+            font-size: 16px; /* Tamanho base para desktops */
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Helvetica Neue', sans-serif;
+            color: #fff;
+            background: transparent;
+            /* Garante que o corpo do documento ocupe toda a altura disponível, útil para o alinhamento do container */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Permite o scroll se o conteúdo for maior que a tela (raro neste layout, mas boa prática) */
+            overflow: auto;
+            -webkit-overflow-scrolling: touch; /* Melhora o scroll em iOS */
+        }
+
+        .bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://imagex1.sx.cdn.live/images/pinporn/2020/05/13/23013171.jpg?width=300') center/cover no-repeat;
+            filter: blur(6px) brightness(0.6);
+            z-index: -1;
+            /* Garante que a imagem de fundo cubra toda a área e não repita */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            /* Removendo 'absolute' e 'transform' para alinhar com Flexbox no body */
+            text-align: center;
+            max-width: 480px;
+            padding: 2.2rem; /* Usando rem para padding */
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Adiciona uma sombra para destacar */
+            /* Garante uma altura mínima para o container, evitando que ele fique muito pequeno em telas minúsculas */
+            min-height: 220px;
+            display: flex; /* Transforma o container em flex para centralizar o conteúdo verticalmente */
+            flex-direction: column; /* Organiza os itens em coluna */
+            justify-content: center; /* Centraliza verticalmente */
+            align-items: center; /* Centraliza horizontalmente */
+            margin: 1.5rem; /* Adiciona uma margem para não colar nas bordas em telas menores */
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura */
+        }
+
+        h1 {
+            font-size: 2rem; /* Usando rem */
+            margin-bottom: 1rem; /* Usando rem */
+            word-wrap: break-word; /* Garante que palavras longas quebrem a linha */
+            padding: 0 0.5rem; /* Pequeno padding horizontal para evitar que o texto encoste nas bordas */
+        }
+
+        p {
+            font-size: 1.15rem; /* Usando rem */
+            margin-bottom: 1.6rem; /* Usando rem */
+            line-height: 1.4;
+            word-wrap: break-word; /* Garante que palavras longas quebrem a linha */
+            padding: 0 0.5rem; /* Pequeno padding horizontal */
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.6rem; /* Usando rem para padding */
+            font-size: 1.1rem; /* Usando rem */
+            color: #fff;
+            background: rgba(255,255,255,0.15);
+            border: 2px solid #fff;
+            border-radius: 28px;
+            text-decoration: none;
+            backdrop-filter: blur(3px);
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Transições mais suaves */
+            white-space: nowrap; /* Evita que o texto do botão quebre em várias linhas */
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: scale(1.04);
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4); /* Adiciona uma sombra ao hover */
+        }
+
+        footer {
+            font-size: 0.85rem; /* Usando rem */
+            opacity: 0.6;
+            margin-top: 2rem; /* Usando rem */
+            text-align: center;
+            width: 100%; /* Garante que o footer ocupe toda a largura disponível no container */
+            padding: 0 0.5rem; /* Pequeno padding horizontal */
+            box-sizing: border-box;
+        }
+
+        /* --- Media Queries para responsividade aprimorada --- */
+
+        /* Para telas de até 768px de largura (geralmente tablets em paisagem e menores) */
+        @media (max-width: 768px) {
+            html {
+                font-size: 15px; /* Reduz o tamanho da fonte base para telas menores */
+            }
+            .container {
+                max-width: 90%; /* Ocupa 90% da largura da tela */
+                padding: 1.8rem; /* Ajusta o padding para telas menores */
+                margin: 1rem; /* Ajusta a margem para telas menores */
+            }
+            h1 {
+                font-size: 1.7rem; /* Ajusta o tamanho da fonte */
+                margin-bottom: 0.8rem;
+            }
+            p {
+                font-size: 1rem; /* Ajusta o tamanho da fonte */
+                margin-bottom: 1.4rem;
+            }
+            .btn {
+                font-size: 1rem; /* Ajusta o tamanho da fonte */
+                padding: 0.7rem 1.4rem; /* Ajusta o padding */
+            }
+            footer {
+                margin-top: 1.5rem; /* Ajusta a margem superior */
+                font-size: 0.75rem; /* Pode ajustar ainda mais para mobile */
+            }
+        }
+
+        /* Para telas de até 480px de largura (smartphones) */
+        @media (max-width: 480px) {
+            html {
+                font-size: 14px; /* Reduz ainda mais o tamanho da fonte base para smartphones */
+            }
+            .container {
+                padding: 1.2rem; /* Padding menor em telas muito pequenas */
+                margin: 0.8rem; /* Margem menor */
+                min-height: unset; /* Remove min-height para permitir que o conteúdo se ajuste totalmente */
+            }
+            h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.7rem;
+            }
+            p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
+            }
+            footer {
+                margin-top: 1rem;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="container">
+        <h1>Ready to confess?</h1>
+        <p>This is your moment. Say what you've been holding in.</p>
+        <a class="btn" href="https://bggcdje.pixls.one/p/ye6cD" target="_blank" rel="noopener">Confess Now</a>
+        <footer>Confess to Me • No judgement, just you and me</footer>
+    </div>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-W93YVEZ0KQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-W93YVEZ0KQ');
+    </script>
+</body>
+</html>
